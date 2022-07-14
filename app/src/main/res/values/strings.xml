@@ -15,4 +15,8 @@
 -->
 <resources>
     <string name="app_name">Mars Photos</string>
+    <string name="loading_failed">Failed to load</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading</string>
+    <string name="mars_photo">Mars photo</string>
 </resources>

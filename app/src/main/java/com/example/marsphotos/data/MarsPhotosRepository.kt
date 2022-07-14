@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.example.marsphotos.data
 
-package com.example.marsphotos.ui.theme
+import com.example.marsphotos.model.MarsPhoto
 
-import androidx.compose.material.Typography
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
-
-val Typography = Typography(
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
-    )
-)
+/**
+ * Repository that fetch mars photos list from marsApi.
+ */
+interface MarsPhotosRepository {
+    /** Fetches list of MarsPhoto from marsApi */
+    suspend fun getMarsPhotos(): List<MarsPhoto>
+}
