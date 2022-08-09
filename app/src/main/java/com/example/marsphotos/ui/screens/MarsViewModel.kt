@@ -21,9 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.marsphotos.MarsPhotosApplication
@@ -42,7 +40,7 @@ sealed interface MarsUiState {
     object Loading : MarsUiState
 }
 
-class MarsViewModel(private val marsPhotoRepository: MarsPhotosRepository) : ViewModel() {
+class MarsViewModel(private val marsPhotosRepository: MarsPhotosRepository) : ViewModel() {
     /** The mutable State that stores the status of the most recent request */
     var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
         private set
@@ -61,12 +59,12 @@ class MarsViewModel(private val marsPhotoRepository: MarsPhotosRepository) : Vie
     fun getMarsPhotos() {
         viewModelScope.launch {
             marsUiState = MarsUiState.Loading
-            try {
-                marsUiState = MarsUiState.Success(marsPhotoRepository.getMarsPhotos())
+            marsUiState = try {
+                MarsUiState.Success(marsPhotosRepository.getMarsPhotos())
             } catch (e: IOException) {
-                marsUiState = MarsUiState.Error
+                MarsUiState.Error
             } catch (e: HttpException) {
-                marsUiState = MarsUiState.Error
+                MarsUiState.Error
             }
         }
     }
@@ -77,11 +75,9 @@ class MarsViewModel(private val marsPhotoRepository: MarsPhotosRepository) : Vie
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val savedStateHandle = createSavedStateHandle()
-                val marsPhotoRepository = (this[APPLICATION_KEY] as MarsPhotosApplication).container.marsPhotosRepository
-                MarsViewModel(
-                    marsPhotoRepository = marsPhotoRepository
-                )
+                val application = (this[APPLICATION_KEY] as MarsPhotosApplication)
+                val marsPhotosRepository = application.container.marsPhotosRepository
+                MarsViewModel(marsPhotosRepository = marsPhotosRepository)
             }
         }
     }
