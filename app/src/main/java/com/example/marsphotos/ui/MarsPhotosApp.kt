@@ -44,7 +44,6 @@ fun MarsPhotosApp(marsViewModel: MarsViewModel, modifier: Modifier = Modifier) {
         ) {
             HomeScreen(
                 marsUiState = marsViewModel.marsUiState,
-                retryAction = marsViewModel::getMarsPhotos,
                 modifier = modifier
             )
         }

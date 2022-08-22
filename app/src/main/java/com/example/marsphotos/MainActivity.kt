@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MarsPhotosTheme {
-                val viewModel: MarsViewModel = viewModel(factory = MarsViewModel.Factory)
+                val viewModel: MarsViewModel = viewModel()
                 MarsPhotosApp(viewModel)
             }
         }

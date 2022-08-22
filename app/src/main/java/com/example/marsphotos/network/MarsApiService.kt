@@ -17,17 +17,33 @@
 package com.example.marsphotos.network
 
 import com.example.marsphotos.model.MarsPhoto
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+private const val BASE_URL =
+    "https://android-kotlin-fun-mars-server.appspot.com"
+
 /**
- * A public interface that exposes the [getPhotos] method
+ * Use the Retrofit builder to build a retrofit object using a Gson converter
+ */
+private val retrofit = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
+/**
+ * Retrofit service object for creating api calls
  */
 interface MarsApiService {
-    /**
-     * Returns a [List] of [MarsPhoto] and this method can be called from a Coroutine.
-     * The @GET annotation indicates that the "photos" endpoint will be requested with the GET
-     * HTTP method
-     */
-    @GET("photos")
-    suspend fun getPhotos(): List<MarsPhoto>
+    @GET("photos")suspend fun getPhotos(): List<MarsPhoto>
+}
+
+/**
+ * A public Api object that exposes the lazy-initialized Retrofit service
+ */
+object MarsApi {
+    val retrofitService : MarsApiService by lazy {
+        retrofit.create(MarsApiService::class.java)
+    }
 }
