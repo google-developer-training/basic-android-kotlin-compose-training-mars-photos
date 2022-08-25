@@ -103,7 +103,7 @@ fun PhotosGridScreen(photos: List<MarsPhoto>, modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth(),
         contentPadding = PaddingValues(4.dp)
     ) {
-        items(photos, key = { photo -> photo.id }) { photo ->
+        items(items = photos, key = { photo -> photo.id }) { photo ->
             MarsPhotoCard(photo)
         }
     }
@@ -123,7 +123,7 @@ fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
                 .data(photo.imgSrc)
                 .crossfade(true)
                 .build(),
-            fallback = painterResource(R.drawable.ic_broken_image),
+            error = painterResource(R.drawable.ic_broken_image),
             placeholder = painterResource(R.drawable.loading_img),
             contentDescription = stringResource(R.string.mars_photo),
             contentScale = ContentScale.FillBounds,
