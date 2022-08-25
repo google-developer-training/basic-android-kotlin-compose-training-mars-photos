@@ -105,6 +105,6 @@ fun ErrorScreenPreview() {
 @Composable
 fun ResultScreenPreview() {
     MarsPhotosTheme {
-        ResultScreen(stringResource(R.string.placeholder_result))
+        ResultScreen(stringResource(R.string.result))
     }
 }

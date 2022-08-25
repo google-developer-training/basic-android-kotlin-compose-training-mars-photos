@@ -16,7 +16,7 @@
 <resources>
     <string name="app_name">Mars Photos</string>
     <string name="loading_failed">Failed to load</string>
-    <string name="placeholder_result">Success. 838 Mars photos retrieved</string>
+    <string name="result">Success. Mars photos retrieved</string>
     <string name="retry">Retry</string>
     <string name="loading">Loading</string>
     <string name="mars_photo">Mars photo</string>

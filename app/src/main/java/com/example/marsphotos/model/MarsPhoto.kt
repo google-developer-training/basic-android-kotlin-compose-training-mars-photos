@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2022 The Android Open Source Project
  *
@@ -24,5 +23,6 @@ import com.google.gson.annotations.SerializedName
  */
 data class MarsPhoto(
     val id: String,
-    @SerializedName(value = "img_src")val imgSrc: String
+    @SerializedName(value = "img_src")
+    val imgSrc: String
 )
