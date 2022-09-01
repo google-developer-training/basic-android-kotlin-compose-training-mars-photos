@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MarsPhotosTheme {
-                MarsPhotosApp(viewModel())
+                MarsPhotosApp(marsViewModel = viewModel())
             }
         }
     }
