@@ -7,10 +7,15 @@ assignees: ''
 
 ---
 
-**URL of codelab**
+**URL of codelab:**
+
+
+**Specify the language of the codelab if it is not English:**
+
 
 
 **In which task and step of the codelab can this issue be found?**
+
 
 
 **Describe the problem**
