@@ -1,7 +1,7 @@
 ---
-name: Project: Create a Bookshelf App
-about: Issue template for Project: Create a Bookshelf App
-title: Project: Create a Bookshelf App
+name: Create a Bookshelf App
+about: Issue template for Create a Bookshelf App project
+title: Create a Bookshelf App
 labels: ''
 assignees: ''
 
