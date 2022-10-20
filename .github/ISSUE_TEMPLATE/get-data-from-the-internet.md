@@ -1,5 +1,5 @@
 ---
-name: Get Data From the Internet issue template
+name: Get Data from the Internet issue template
 about: Issue template for Get Data From the Internet codelab
 title: Get Data from the Internet
 labels: ''
