@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.marsphotos.ui.theme
+package com.example.marsphotos.model
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Shapes
-import androidx.compose.ui.unit.dp
-
-val Shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(16.dp),
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+/**
+ * This data class defines a Mars photo which includes an ID, and the image URL.
+ */
+@Serializable
+data class MarsPhoto(
+    val id: String,
+    @SerialName(value = "img_src")
+    val imgSrc: String
 )
