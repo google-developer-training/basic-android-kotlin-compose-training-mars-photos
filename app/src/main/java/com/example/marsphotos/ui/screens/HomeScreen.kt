@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,12 +32,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
-import com.example.marsphotos.model.MarsPhoto
 import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
 @Composable
 fun HomeScreen(
-    marsUiState: MarsUiState, retryAction: () -> Unit, modifier: Modifier = Modifier
+    marsUiState: MarsUiState, modifier: Modifier = Modifier
 ) {
     when (marsUiState) {
         is MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
@@ -46,7 +44,7 @@ fun HomeScreen(
             marsUiState.photos, modifier = modifier.fillMaxWidth()
         )
 
-        is MarsUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
+        is MarsUiState.Error -> ErrorScreen( modifier = modifier.fillMaxSize())
     }
 }
 
@@ -66,7 +64,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
  * The home screen displaying error message with re-attempt button.
  */
 @Composable
-fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
+fun ErrorScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
@@ -76,9 +74,6 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
             painter = painterResource(id = R.drawable.ic_connection_error), contentDescription = ""
         )
         Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
-        Button(onClick = retryAction) {
-            Text(stringResource(R.string.retry))
-        }
     }
 }
 
@@ -107,7 +102,7 @@ fun LoadingScreenPreview() {
 @Composable
 fun ErrorScreenPreview() {
     MarsPhotosTheme {
-        ErrorScreen({})
+        ErrorScreen()
     }
 }
 
@@ -115,7 +110,6 @@ fun ErrorScreenPreview() {
 @Composable
 fun PhotosGridScreenPreview() {
     MarsPhotosTheme {
-        val mockData = List(10) { MarsPhoto("$it", "") }
         ResultScreen(stringResource(R.string.placeholder_success))
     }
 }
