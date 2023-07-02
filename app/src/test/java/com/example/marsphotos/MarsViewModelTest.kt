@@ -20,13 +20,11 @@ import com.example.marsphotos.fake.FakeNetworkMarsPhotosRepository
 import com.example.marsphotos.rules.TestDispatcherRule
 import com.example.marsphotos.ui.screens.MarsUiState
 import com.example.marsphotos.ui.screens.MarsViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class MarsViewModelTest {
 
     @get:Rule
