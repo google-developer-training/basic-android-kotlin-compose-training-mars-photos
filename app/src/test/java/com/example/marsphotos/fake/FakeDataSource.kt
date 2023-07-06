@@ -19,10 +19,10 @@ import com.example.marsphotos.model.MarsPhoto
 
 object FakeDataSource {
 
-    const val idOne = "img1"
-    const val idTwo = "img2"
-    const val imgOne = "url.one"
-    const val imgTwo = "url.two"
+    private const val idOne = "img1"
+    private const val idTwo = "img2"
+    private const val imgOne = "url.one"
+    private const val imgTwo = "url.two"
     val photosList = listOf(
         MarsPhoto(
             id = idOne,
