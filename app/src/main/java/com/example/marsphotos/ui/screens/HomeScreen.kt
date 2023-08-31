@@ -46,7 +46,6 @@ fun HomeScreen(
         is MarsUiState.Success -> ResultScreen(
             marsUiState.photos, modifier = modifier.fillMaxWidth()
         )
-
         is MarsUiState.Error -> ErrorScreen( modifier = modifier.fillMaxSize())
     }
 }
