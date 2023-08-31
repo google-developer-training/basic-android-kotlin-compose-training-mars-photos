@@ -59,7 +59,6 @@ fun HomeScreen(
         is MarsUiState.Success -> PhotosGridScreen(
             marsUiState.photos, contentPadding = contentPadding, modifier = modifier.fillMaxWidth()
         )
-
         is MarsUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
     }
 }
@@ -107,7 +106,7 @@ fun PhotosGridScreen(
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
-        modifier = modifier.padding(4.dp),
+        modifier = modifier.padding(horizontal = 4.dp),
         contentPadding = contentPadding,
     ) {
         items(items = photos, key = { photo -> photo.id }) { photo ->
