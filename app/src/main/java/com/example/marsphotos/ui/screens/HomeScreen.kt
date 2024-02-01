@@ -49,14 +49,16 @@ import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
 @Composable
 fun HomeScreen(
-    marsUiState: MarsUiState, retryAction: () -> Unit, modifier: Modifier = Modifier
+    marsUiState: MarsUiState,
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     when (marsUiState) {
         is MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
         is MarsUiState.Success -> PhotosGridScreen(
-            marsUiState.photos, modifier = modifier.fillMaxWidth()
+            marsUiState.photos, contentPadding = contentPadding, modifier = modifier.fillMaxWidth()
         )
-
         is MarsUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
     }
 }
@@ -97,11 +99,15 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
  * The home screen displaying photo grid.
  */
 @Composable
-fun PhotosGridScreen(photos: List<MarsPhoto>, modifier: Modifier = Modifier) {
+fun PhotosGridScreen(
+    photos: List<MarsPhoto>,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
-        modifier = modifier,
-        contentPadding = PaddingValues(4.dp)
+        modifier = modifier.padding(horizontal = 4.dp),
+        contentPadding = contentPadding,
     ) {
         items(items = photos, key = { photo -> photo.id }) { photo ->
             MarsPhotoCard(
