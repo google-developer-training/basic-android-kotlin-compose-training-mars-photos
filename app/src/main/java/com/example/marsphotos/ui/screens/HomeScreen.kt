@@ -112,7 +112,7 @@ fun PhotosGridScreen(
         items(items = photos, key = { photo -> photo.id }) { photo ->
             MarsPhotoCard(
                 photo,
-                modifier = modifier
+                modifier = Modifier
                     .padding(4.dp)
                     .fillMaxWidth()
                     .aspectRatio(1.5f)
