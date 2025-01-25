@@ -15,14 +15,28 @@
  */
 package com.example.marsphotos.ui.screens
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalGraphicsContext
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.marsphotos.network.MarsApiInterface
+import com.example.marsphotos.network.MarsApiService
+import com.example.marsphotos.network.MarsPhoto
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
+sealed interface MarsUiState {
+    data class Success(val photos: List<MarsPhoto>) : MarsUiState
+    data object Error : MarsUiState
+    data object Loading : MarsUiState
+}
 class MarsViewModel : ViewModel() {
     /** The mutable State that stores the status of the most recent request */
-    var marsUiState: String by mutableStateOf("")
+    var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
         private set
 
     /**
@@ -37,6 +51,18 @@ class MarsViewModel : ViewModel() {
      * [MarsPhoto] [List] [MutableList].
      */
     fun getMarsPhotos() {
-        marsUiState = "Set the Mars API status response here!"
+        viewModelScope.launch {
+            marsUiState = MarsUiState.Loading
+            marsUiState = try {
+                val listResult = MarsApiService.retrofitService.getPhotos()
+                MarsUiState.Success(
+                        photos=listResult
+                )
+            } catch (e: IOException) {
+                MarsUiState.Error
+            } catch (e: HttpException) {
+                MarsUiState.Error
+            }
+        }
     }
 }
